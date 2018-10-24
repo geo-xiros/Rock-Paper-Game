@@ -8,7 +8,7 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             Game g = new Game();
-			while (g.play() ) {}
+			while (g.Play() ) {}
         }
     }
 	
@@ -25,7 +25,7 @@ namespace ConsoleApplication1
 		}
 		
 		// Show menu choices for player
-		private void showMenu()
+		private void ShowMenu()
 		{
 			Console.WriteLine("1) Rock");
 			Console.WriteLine("2) Paper");
@@ -34,20 +34,20 @@ namespace ConsoleApplication1
 		}
 		
 		// Ask player for a selection 'Rock - paper - Scissors
-		private int UserSelection()
+		private int PlayerSelection()
 		{
 			Console.Write("Select your weapon: ");
 			return int.Parse(Console.ReadLine())-1;
 		}
 
 		// Computer random selection
-		private int aiSelection()
+		private int ComputerSelection()
 		{
 			return rnd.Next(3);
 		}
 		
 		// find out who wins 
-		private int findWinner(int player, int computer)
+		private int FindWinner(int player, int computer)
 		{
 			if (player == computer) {
 				return 0;
@@ -60,33 +60,28 @@ namespace ConsoleApplication1
 		}
 		
 		// play again mesage
-		private bool playAgain()
+		private bool PlayAgain()
 		{
 			Console.Write("Play again : [y/n]");
 			string k = Console.ReadLine();
 			return ((k=="y") || (k=="Y"));
 		}
 		
-		// return paper - rock - scissors string based on index 0,1,2
-		private string weapon(int w)
-		{
-			return weapons[w];
-		}
 		
 		// play game
-		public bool play()
+		public bool Play()
 		{
-			showMenu();
+			ShowMenu();
 			
-			int player = UserSelection();
-			int computer = aiSelection();
-			int winner = findWinner(player, computer);
+			int player = PlayerSelection();
+			int computer = ComputerSelection();
+			int winner = FindWinner(player, computer);
 			
-			Console.WriteLine("your weapon is {0:G}", weapon(player));
-			Console.WriteLine("computer weapon is {0:G}", weapon(computer));
+			Console.WriteLine("your weapon is {0:G}", weapons[player]);
+			Console.WriteLine("computer weapon is {0:G}", weapons[computer]);
 			Console.WriteLine(outcomeMsg[winner]);
 			
-			return playAgain();
+			return PlayAgain();
 			
 		}
 	}
