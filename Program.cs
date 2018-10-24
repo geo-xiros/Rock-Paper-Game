@@ -70,7 +70,6 @@ namespace ConsoleApplication1
 		
 		public bool play()
 		{
-			Console.WriteLine("Play");
 			showMenu();
 			
 			int player = UserSelection();
