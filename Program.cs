@@ -24,6 +24,7 @@ namespace ConsoleApplication1
 			
 		}
 		
+		// Show menu choices for player
 		private void showMenu()
 		{
 			Console.WriteLine("1) Rock");
@@ -32,19 +33,21 @@ namespace ConsoleApplication1
 			
 		}
 		
+		// Ask player for a selection 'Rock - paper - Scissors
 		private int UserSelection()
 		{
 			Console.Write("Select your weapon: ");
 			return int.Parse(Console.ReadLine())-1;
 		}
 
-		
+		// Computer random selection
 		private int aiSelection()
 		{
 			return rnd.Next(3);
 		}
 		
-		private int winner(int player, int computer)
+		// find out who wins 
+		private int findWinner(int player, int computer)
 		{
 			if (player == computer) {
 				return 0;
@@ -56,6 +59,7 @@ namespace ConsoleApplication1
 			
 		}
 		
+		// play again mesage
 		private bool playAgain()
 		{
 			Console.Write("Play again : [y/n]");
@@ -63,22 +67,24 @@ namespace ConsoleApplication1
 			return ((k=="y") || (k=="Y"));
 		}
 		
+		// return paper - rock - scissors string based on index 0,1,2
 		private string weapon(int w)
 		{
 			return weapons[w];
 		}
 		
+		// play game
 		public bool play()
 		{
 			showMenu();
 			
 			int player = UserSelection();
 			int computer = aiSelection();
-			int winMsg = winner(player, computer);
+			int winner = findWinner(player, computer);
 			
 			Console.WriteLine("your weapon is {0:G}", weapon(player));
 			Console.WriteLine("computer weapon is {0:G}", weapon(computer));
-			Console.WriteLine(outcomeMsg[winMsg]);
+			Console.WriteLine(outcomeMsg[winner]);
 			
 			return playAgain();
 			
